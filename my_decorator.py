@@ -6,17 +6,14 @@ def my_decor_decorator(log_path):
 
     def my_decorator(some_function):
         """
-        Функция-декорflake8 main.pyfатор
+        Функция-декоратор
         Он записывает в файл дату и время вызова функции, имя функции,
-        аргументы, с которыми вызвалась и возвращаемое значение.
+        аргументы, с которыми она вызывалась и возвращаемое значение.
         :param some_function: декорируемая функция
         :return:
         """
 
-        def arrange_function(*args):
-
-            # with open('config.json', 'r') as cf:
-            #     config = json.load(cf)
+        def arrange_function(*args, **kwargs):
 
             if not os.path.isdir(log_path):
                 os.mkdir(log_path)
@@ -30,7 +27,7 @@ def my_decor_decorator(log_path):
                 f.write('Arguments: ' + str(args[0]) + ' | ')
                 result = some_function(*args)
                 f.write('Result: ' + result + '\n')
-            return
+            return result
 
         return arrange_function
 
